@@ -71,7 +71,7 @@ describe("7-step flow through route handlers", () => {
     expect(mids).toHaveLength(3);
 
     // 2 list (no token)
-    const listRes = await listGET(get("/api/projects"));
+    const listRes = await listGET();
     const listText = await listRes.text();
     expect(listRes.status).toBe(200);
     expect(listText).toContain(id);
