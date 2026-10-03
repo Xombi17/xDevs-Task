@@ -86,7 +86,7 @@ Ledger-first, vertical slices. Phase 1 builds the pure hash/verify core and the 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Ledger Core | 3/3 | Complete   | 2026-10-03 |
-| 2. Services, REST API & Seed | 0/0 | Not started | - |
+| 2. Services, REST API & Seed | 2/3 | In Progress|  |
 | 3. Core UI | 0/0 | Not started | - |
 | 4. Tamper Demo & Visual Proof | 0/0 | Not started | - |
 | 5. Public Verify, Export, Tests & Ship | 0/0 | Not started | - |
