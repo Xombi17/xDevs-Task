@@ -64,7 +64,12 @@ Ledger-first, vertical slices. Phase 1 builds the pure hash/verify core and the 
   3. Tamper map shows ok entries green, the broken entry red and downstream entries amber, with expected vs stored hash.
   4. "Re-verify in browser" recomputes the chain with Web Crypto and agrees with the server (or shows a fallback message).
   5. A failure explanation states which check failed (self-hash vs prevHash link) and cross-references milestone state; the seed includes a pre-tampered project that shows Broken in any run mode.
-**Plans**: TBD
+**Plans:** 3 plans
+
+Plans:
+- [ ] 04-01-PLAN.md — Gate + atomic tamper helper, gated POST route, pre-tampered seed (+tests)
+- [ ] 04-02-PLAN.md — Tamper map, failure explanation, browser re-verify (pure modules + UI)
+- [ ] 04-03-PLAN.md — DEMO ONLY banner, confirm-dialog tamper button, dev:demo + .env docs, smoke
 **UI hint**: yes
 
 ### Phase 5: Public Verify, Export, Tests & Ship
