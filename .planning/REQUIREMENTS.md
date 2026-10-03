@@ -16,19 +16,19 @@
 ### Projects & Dashboard
 - [x] **PROJ-01**: Agency can create a project with title, client name and 3+ milestones (title, description, due date) with inline validation errors
 - [x] **PROJ-02**: Creating a project writes a PROJECT_CREATED ledger entry atomically with the project and milestones
-- [ ] **PROJ-03**: Dashboard lists projects with client name, progress (e.g. "2 / 4 approved") and status badge; new project appears immediately
-- [ ] **PROJ-04**: Project page shows each milestone as Pending, Approved or Changes Requested, with a "Copy client link" button
+- [x] **PROJ-03**: Dashboard lists projects with client name, progress (e.g. "2 / 4 approved") and status badge; new project appears immediately
+- [x] **PROJ-04**: Project page shows each milestone as Pending, Approved or Changes Requested, with a "Copy client link" button
 
 ### Client Review
 - [x] **REVW-01**: Each project has a unique unguessable review token (randomBytes(32) base64url); `/review/:token` works without login
-- [ ] **REVW-02**: Client enters their name, then approves a milestone or requests changes (note required for changes)
+- [x] **REVW-02**: Client enters their name, then approves a milestone or requests changes (note required for changes)
 - [x] **REVW-03**: A milestone can be decided only once; a repeat decision returns 409 and writes no entry
 - [x] **REVW-04**: Decision can only target milestones of the token's own project; unknown tokens return the same 404 body
 - [ ] **REVW-05**: Client sees a receipt (entry index + hash) after deciding, downloadable as JSON
 
 ### Audit & Verify
-- [ ] **AUDT-01**: Audit page shows a timeline (action, actor, time, short hash, previous hash) plus head hash and entry count
-- [ ] **AUDT-02**: "Verify integrity" recomputes the chain on the server and shows "Valid" or "Broken at entry #N" (single documented numbering convention)
+- [x] **AUDT-01**: Audit page shows a timeline (action, actor, time, short hash, previous hash) plus head hash and entry count
+- [x] **AUDT-02**: "Verify integrity" recomputes the chain on the server and shows "Valid" or "Broken at entry #N" (single documented numbering convention)
 - [ ] **AUDT-03**: Tamper map shows ok entries green, the broken entry red, downstream entries amber (untrusted) with expected vs stored hash
 - [ ] **AUDT-04**: Browser re-verify recomputes the chain with Web Crypto (with fallback message when unavailable)
 - [ ] **AUDT-05**: On failure, explanation states which check failed (self-hash vs prevHash link) and cross-references milestone state (best-effort, not a true field diff)
@@ -43,7 +43,7 @@
 - [x] **API-01**: REST API with persistent SQLite DB, zod strict validation on every endpoint and one status-code convention (400 malformed, 422 validation, 404, 409, 403, 429)
 - [x] **API-02**: Decision endpoint rate limited (in-memory)
 - [x] **API-03**: Public DTOs use allow-lists (no token leakage); review page sets no-referrer and noindex
-- [ ] **UI-01**: Responsive layout with loading, empty and error states throughout; clean consistent design
+- [x] **UI-01**: Responsive layout with loading, empty and error states throughout; clean consistent design
 - [x] **SEED-01**: Idempotent seed script builds the "Website Redesign" demo through the real append path
 - [ ] **TEST-01**: Unit tests (golden hash vectors, key-order shuffle, `|`/unicode, verify, both tamper styles) and integration test of the 7-step demo flow plus 10-parallel-decisions concurrency test
 - [ ] **EXPT-01**: JSON export of the chain (with head hash) and a zero-dependency standalone verify script
@@ -88,12 +88,12 @@
 | API-02 | Phase 2 | Complete |
 | API-03 | Phase 2 | Complete |
 | SEED-01 | Phase 2 | Complete |
-| PROJ-03 | Phase 3 | Pending |
-| PROJ-04 | Phase 3 | Pending |
-| REVW-02 | Phase 3 | Pending |
-| AUDT-01 | Phase 3 | Pending |
-| AUDT-02 | Phase 3 | Pending |
-| UI-01 | Phase 3 | Pending |
+| PROJ-03 | Phase 3 | Complete |
+| PROJ-04 | Phase 3 | Complete |
+| REVW-02 | Phase 3 | Complete |
+| AUDT-01 | Phase 3 | Complete |
+| AUDT-02 | Phase 3 | Complete |
+| UI-01 | Phase 3 | Complete |
 | TAMP-01 | Phase 4 | Pending |
 | TAMP-02 | Phase 4 | Pending |
 | TAMP-03 | Phase 4 | Pending |
