@@ -80,3 +80,25 @@ export function toLedgerDto(entries: StoredEntry[], headHash: string, length: nu
     })),
   };
 }
+
+// Public export document (EXPT-01). Explicit allow-list: no token, no client name,
+// no parsed payload. payloadJson stays the exact stored string so hashes recompute.
+export function toExportDto(projectId: string, title: string, entries: StoredEntry[], headHash: string, length: number) {
+  return {
+    format: "signseal-ledger-export/v1" as const,
+    projectId,
+    title,
+    exportedAt: new Date().toISOString(),
+    headHash,
+    length,
+    entries: entries.map((e) => ({
+      index: e.index,
+      timestamp: e.timestamp,
+      action: e.action,
+      actor: e.actor,
+      payloadJson: e.payloadJson,
+      prevHash: e.prevHash,
+      hash: e.hash,
+    })),
+  };
+}

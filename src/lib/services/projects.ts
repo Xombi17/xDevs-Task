@@ -5,6 +5,7 @@ import { append } from "@/lib/ledger/append";
 import { getEntries, verifyProject } from "@/lib/ledger/chain";
 import { generateToken } from "@/lib/ledger/token";
 import {
+  toExportDto,
   toLedgerDto,
   toProjectDetailDto,
   toProjectSummaryDto,
@@ -73,4 +74,12 @@ export async function getLedger(db: Database, projectId: string) {
 export async function getVerify(db: Database, projectId: string) {
   requireProject(db, projectId);
   return verifyProject(db, projectId);
+}
+
+// Reports the stored chain's head even if it is broken; the standalone verifier judges it.
+export async function getExport(db: Database, projectId: string) {
+  const p = requireProject(db, projectId);
+  const entries = getEntries(db, projectId);
+  const v = await verifyProject(db, projectId);
+  return toExportDto(p.id, p.title, entries, v.headHash, v.length);
 }
