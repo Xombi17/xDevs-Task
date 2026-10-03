@@ -1,0 +1,39 @@
+services:
+  # Production-like service: Next standalone, non-root, tamper endpoint returns 403.
+  app:
+    build:
+      context: .
+      target: runner
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      ENABLE_TAMPER_DEMO: "false"
+      DB_PATH: /app/data/signseal.db
+    volumes:
+      - signseal-data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  # DEMO ONLY: dev server with the tamper button enabled (dev:demo forces ENABLE_TAMPER_DEMO=true).
+  # Never expose this service. Start with: docker compose --profile demo up demo
+  demo:
+    profiles: ["demo"]
+    build:
+      context: .
+      target: dev
+    ports:
+      - "3001:3000"
+    environment:
+      DB_PATH: /app/data/signseal.db
+    volumes:
+      - signseal-demo-data:/app/data
+
+volumes:
+  signseal-data:
+  signseal-demo-data:
