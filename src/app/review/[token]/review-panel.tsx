@@ -1,11 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { HashText } from "@/components/ui/hash-text";
 import { StatusBadge } from "@/components/ui/status-badge";
+import { formatDateTime } from "@/lib/format";
+import { buildReceipt, type ReceiptInput } from "@/lib/receipt";
 
 type MilestoneStatus = "pending" | "approved" | "changes_requested";
 type Milestone = {
@@ -17,8 +20,20 @@ type Milestone = {
   decidedBy: string | null;
   note: string | null;
 };
-type Receipt = { index: number; hash: string };
+type Receipt = ReceiptInput;
 type Decision = "approved" | "changes_requested";
+
+function downloadReceipt(r: Receipt) {
+  const blob = new Blob([JSON.stringify(buildReceipt(r), null, 2) + "\n"], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `signseal-receipt-${r.index}.json`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
 
 function nameError(name: string): string | null {
   const n = name.trim();
@@ -186,9 +201,42 @@ export function ReviewPanel({ milestones: initial }: { milestones: Milestone[] }
                       </p>
                     )}
                     {receipt && (
-                      <p className="mt-2 flex flex-wrap items-center gap-2 text-xs text-muted">
-                        Recorded as entry #{receipt.index} <HashText hash={receipt.hash} short />
-                      </p>
+                      <div className="mt-3 rounded-lg border border-line bg-canvas px-3 py-3" aria-label="Receipt">
+                        <p className="text-xs font-semibold uppercase tracking-wide text-muted">Receipt</p>
+                        <dl className="mt-2 space-y-1.5 text-xs">
+                          <div className="flex flex-wrap items-center gap-x-2">
+                            <dt className="w-14 font-semibold uppercase tracking-wide text-muted">entry</dt>
+                            <dd className="font-mono font-bold text-ink">#{receipt.index}</dd>
+                          </div>
+                          <div className="flex flex-wrap items-center gap-x-2">
+                            <dt className="w-14 font-semibold uppercase tracking-wide text-muted">hash</dt>
+                            <dd className="min-w-0">
+                              <HashText hash={receipt.hash} copy />
+                            </dd>
+                          </div>
+                          <div className="flex flex-wrap items-center gap-x-2">
+                            <dt className="w-14 font-semibold uppercase tracking-wide text-muted">by</dt>
+                            <dd className="text-ink">{receipt.actor}</dd>
+                          </div>
+                          <div className="flex flex-wrap items-center gap-x-2">
+                            <dt className="w-14 font-semibold uppercase tracking-wide text-muted">time</dt>
+                            <dd>{formatDateTime(receipt.timestamp)}</dd>
+                          </div>
+                        </dl>
+                        <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center">
+                          <button type="button" onClick={() => downloadReceipt(receipt)} className="btn btn-secondary">
+                            Download receipt (JSON)
+                          </button>
+                          <Link
+                            href={`/verify/${receipt.projectId}#entry-${receipt.index}`}
+                            target="_blank"
+                            rel="noopener"
+                            className="text-sm font-medium text-accent underline-offset-2 hover:underline"
+                          >
+                            Verify on the public page
+                          </Link>
+                        </div>
+                      </div>
                     )}
                   </div>
                 )}

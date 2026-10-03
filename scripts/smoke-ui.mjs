@@ -141,6 +141,28 @@ try {
   const badAudit = await get(`/projects/${ZERO_ID}/audit`);
   check("bad project id audit returns 404", badAudit.status === 404, `got ${badAudit.status}`);
 
+  // Public verify page (no login, no token)
+  const verify0 = await (await fetch(`${BASE}/api/projects/${id}/verify`)).json();
+  {
+    const pv = await get(`/verify/${id}`);
+    check("/verify/:id returns 200", pv.status === 200);
+    containsAll("/verify/:id", pv.text, ["Valid", "Re-verify in browser", "Export JSON", "Check a receipt", "Website Redesign"]);
+    check("/verify/:id shows the head hash", norm(pv.text).includes(verify0.headHash));
+    check("/verify/:id does not contain the review token anywhere", !pv.text.includes(token));
+    check("/verify/:id links to the export", pv.text.includes(`/api/verify/${id}/export`));
+    check("/verify/:id has no demo tamper UI", !norm(withoutScripts(pv.text)).includes("DEMO ONLY"));
+    check("/verify/:id is noindex", /<meta name="robots" content="[^"]*noindex/.test(pv.text));
+    const legacyP = projects.find((p) => p.title === "Legacy Audit (tampered)");
+    if (legacyP) {
+      const lv = await get(`/verify/${legacyP.id}`);
+      check("/verify/:id for tampered project shows Broken at entry #2", lv.status === 200 && norm(lv.text).includes("Broken at entry #2"));
+    } else check("tampered seed present for /verify check", false);
+    const pz = await get(`/verify/${ZERO_ID}`);
+    check("/verify/unknown returns 404", pz.status === 404, `got ${pz.status}`);
+    const api = await get(`/api/verify/${id}`);
+    check("/api/verify/:id does not contain the review token", api.status === 200 && !api.text.includes(token));
+  }
+
   // Integrity
   const verify = await (await fetch(`${BASE}/api/projects/${id}/verify`)).json();
   check("verify API reports valid === true", verify.valid === true);
