@@ -14,16 +14,16 @@
 - [x] **LEDG-06**: Verify returns per-entry evidence `{valid, headHash, length, brokenAt?, entries:[{index,status,expectedHash,storedHash}]}` checking contiguous idx, genesis, project ownership, recompute and linkage
 
 ### Projects & Dashboard
-- [ ] **PROJ-01**: Agency can create a project with title, client name and 3+ milestones (title, description, due date) with inline validation errors
-- [ ] **PROJ-02**: Creating a project writes a PROJECT_CREATED ledger entry atomically with the project and milestones
+- [x] **PROJ-01**: Agency can create a project with title, client name and 3+ milestones (title, description, due date) with inline validation errors
+- [x] **PROJ-02**: Creating a project writes a PROJECT_CREATED ledger entry atomically with the project and milestones
 - [ ] **PROJ-03**: Dashboard lists projects with client name, progress (e.g. "2 / 4 approved") and status badge; new project appears immediately
 - [ ] **PROJ-04**: Project page shows each milestone as Pending, Approved or Changes Requested, with a "Copy client link" button
 
 ### Client Review
-- [ ] **REVW-01**: Each project has a unique unguessable review token (randomBytes(32) base64url); `/review/:token` works without login
+- [x] **REVW-01**: Each project has a unique unguessable review token (randomBytes(32) base64url); `/review/:token` works without login
 - [ ] **REVW-02**: Client enters their name, then approves a milestone or requests changes (note required for changes)
-- [ ] **REVW-03**: A milestone can be decided only once; a repeat decision returns 409 and writes no entry
-- [ ] **REVW-04**: Decision can only target milestones of the token's own project; unknown tokens return the same 404 body
+- [x] **REVW-03**: A milestone can be decided only once; a repeat decision returns 409 and writes no entry
+- [x] **REVW-04**: Decision can only target milestones of the token's own project; unknown tokens return the same 404 body
 - [ ] **REVW-05**: Client sees a receipt (entry index + hash) after deciding, downloadable as JSON
 
 ### Audit & Verify
@@ -40,11 +40,11 @@
 - [ ] **TAMP-03**: Seed includes a pre-tampered project so "Broken" is demonstrable in any run mode
 
 ### Backend & Quality
-- [ ] **API-01**: REST API with persistent SQLite DB, zod strict validation on every endpoint and one status-code convention (400 malformed, 422 validation, 404, 409, 403, 429)
-- [ ] **API-02**: Decision endpoint rate limited (in-memory)
-- [ ] **API-03**: Public DTOs use allow-lists (no token leakage); review page sets no-referrer and noindex
+- [x] **API-01**: REST API with persistent SQLite DB, zod strict validation on every endpoint and one status-code convention (400 malformed, 422 validation, 404, 409, 403, 429)
+- [x] **API-02**: Decision endpoint rate limited (in-memory)
+- [x] **API-03**: Public DTOs use allow-lists (no token leakage); review page sets no-referrer and noindex
 - [ ] **UI-01**: Responsive layout with loading, empty and error states throughout; clean consistent design
-- [ ] **SEED-01**: Idempotent seed script builds the "Website Redesign" demo through the real append path
+- [x] **SEED-01**: Idempotent seed script builds the "Website Redesign" demo through the real append path
 - [ ] **TEST-01**: Unit tests (golden hash vectors, key-order shuffle, `|`/unicode, verify, both tamper styles) and integration test of the 7-step demo flow plus 10-parallel-decisions concurrency test
 - [ ] **EXPT-01**: JSON export of the chain (with head hash) and a zero-dependency standalone verify script
 - [ ] **DOCS-01**: README with setup, stack, hash formula and canonical rule, limits (tamper-evident not tamper-proof; truncation), tamper-demo instructions, future improvements
@@ -79,15 +79,15 @@
 | LEDG-04 | Phase 1 | Complete |
 | LEDG-05 | Phase 1 | Complete |
 | LEDG-06 | Phase 1 | Complete |
-| PROJ-01 | Phase 2 | Pending |
-| PROJ-02 | Phase 2 | Pending |
-| REVW-01 | Phase 2 | Pending |
-| REVW-03 | Phase 2 | Pending |
-| REVW-04 | Phase 2 | Pending |
-| API-01 | Phase 2 | Pending |
-| API-02 | Phase 2 | Pending |
-| API-03 | Phase 2 | Pending |
-| SEED-01 | Phase 2 | Pending |
+| PROJ-01 | Phase 2 | Complete |
+| PROJ-02 | Phase 2 | Complete |
+| REVW-01 | Phase 2 | Complete |
+| REVW-03 | Phase 2 | Complete |
+| REVW-04 | Phase 2 | Complete |
+| API-01 | Phase 2 | Complete |
+| API-02 | Phase 2 | Complete |
+| API-03 | Phase 2 | Complete |
+| SEED-01 | Phase 2 | Complete |
 | PROJ-03 | Phase 3 | Pending |
 | PROJ-04 | Phase 3 | Pending |
 | REVW-02 | Phase 3 | Pending |
