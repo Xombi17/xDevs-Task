@@ -10,7 +10,7 @@ Ledger-first, vertical slices. Phase 1 builds the pure hash/verify core and the 
 - [x] **Phase 2: Services, REST API & Seed** - Projects, review token, decisions, validation, rate limit, idempotent seed (completed 2026-10-03)
 - [x] **Phase 3: Core UI** - Dashboard, new project, project page, client review page, audit timeline with server Verify (completed 2026-10-03)
 - [x] **Phase 4: Tamper Demo & Visual Proof** - Gated tamper, tamper map, browser re-verify, failure explanation, pre-tampered seed
-- [ ] **Phase 5: Public Verify, Export, Tests & Ship** - Public verify page, receipt, export + script, full tests, Docker, README
+- [x] **Phase 5: Public Verify, Export, Tests & Ship** - Public verify page, receipt, export + script, full tests, Docker, README (completed 2026-10-03)
 
 ## Phase Details
 
@@ -94,7 +94,7 @@ Plans:
 | 2. Services, REST API & Seed | 3/3 | Complete   | 2026-10-03 |
 | 3. Core UI | 3/3 | Complete   | 2026-10-03 |
 | 4. Tamper Demo & Visual Proof | 3/3 | Complete   | 2026-10-03 |
-| 5. Public Verify, Export, Tests & Ship | 1/3 | In Progress|  |
+| 5. Public Verify, Export, Tests & Ship | 3/3 | Complete   | 2026-10-03 |
 
 ## Deferred (v2, unmapped)
 

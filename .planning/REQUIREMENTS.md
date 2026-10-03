@@ -24,7 +24,7 @@
 - [x] **REVW-02**: Client enters their name, then approves a milestone or requests changes (note required for changes)
 - [x] **REVW-03**: A milestone can be decided only once; a repeat decision returns 409 and writes no entry
 - [x] **REVW-04**: Decision can only target milestones of the token's own project; unknown tokens return the same 404 body
-- [ ] **REVW-05**: Client sees a receipt (entry index + hash) after deciding, downloadable as JSON
+- [x] **REVW-05**: Client sees a receipt (entry index + hash) after deciding, downloadable as JSON
 
 ### Audit & Verify
 - [x] **AUDT-01**: Audit page shows a timeline (action, actor, time, short hash, previous hash) plus head hash and entry count
@@ -32,7 +32,7 @@
 - [x] **AUDT-03**: Tamper map shows ok entries green, the broken entry red, downstream entries amber (untrusted) with expected vs stored hash
 - [x] **AUDT-04**: Browser re-verify recomputes the chain with Web Crypto (with fallback message when unavailable)
 - [x] **AUDT-05**: On failure, explanation states which check failed (self-hash vs prevHash link) and cross-references milestone state (best-effort, not a true field diff)
-- [ ] **AUDT-06**: Public `/verify/:projectId` page verifies a chain without login and never exposes the review token
+- [x] **AUDT-06**: Public `/verify/:projectId` page verifies a chain without login and never exposes the review token
 
 ### Tamper Demo
 - [x] **TAMP-01**: Tamper endpoint/button alters one entry's payload via drop-trigger/UPDATE/recreate in one transaction, clearly labelled DEMO ONLY
@@ -45,10 +45,10 @@
 - [x] **API-03**: Public DTOs use allow-lists (no token leakage); review page sets no-referrer and noindex
 - [x] **UI-01**: Responsive layout with loading, empty and error states throughout; clean consistent design
 - [x] **SEED-01**: Idempotent seed script builds the "Website Redesign" demo through the real append path
-- [ ] **TEST-01**: Unit tests (golden hash vectors, key-order shuffle, `|`/unicode, verify, both tamper styles) and integration test of the 7-step demo flow plus 10-parallel-decisions concurrency test
-- [ ] **EXPT-01**: JSON export of the chain (with head hash) and a zero-dependency standalone verify script
-- [ ] **DOCS-01**: README with setup, stack, hash formula and canonical rule, limits (tamper-evident not tamper-proof; truncation), tamper-demo instructions, future improvements
-- [ ] **DOCS-02**: `.env.example` and Docker compose (node:24-slim, DB volume) that runs the demo
+- [x] **TEST-01**: Unit tests (golden hash vectors, key-order shuffle, `|`/unicode, verify, both tamper styles) and integration test of the 7-step demo flow plus 10-parallel-decisions concurrency test
+- [x] **EXPT-01**: JSON export of the chain (with head hash) and a zero-dependency standalone verify script
+- [x] **DOCS-01**: README with setup, stack, hash formula and canonical rule, limits (tamper-evident not tamper-proof; truncation), tamper-demo instructions, future improvements
+- [x] **DOCS-02**: `.env.example` and Docker compose (node:24-slim, DB volume) that runs the demo
 
 ## v2 Requirements (bonus / deferred)
 
@@ -100,12 +100,12 @@
 | AUDT-03 | Phase 4 | Complete |
 | AUDT-04 | Phase 4 | Complete |
 | AUDT-05 | Phase 4 | Complete |
-| AUDT-06 | Phase 5 | Pending |
-| REVW-05 | Phase 5 | Pending |
-| EXPT-01 | Phase 5 | Pending |
-| TEST-01 | Phase 5 | Pending |
-| DOCS-01 | Phase 5 | Pending |
-| DOCS-02 | Phase 5 | Pending |
+| AUDT-06 | Phase 5 | Complete |
+| REVW-05 | Phase 5 | Complete |
+| EXPT-01 | Phase 5 | Complete |
+| TEST-01 | Phase 5 | Complete |
+| DOCS-01 | Phase 5 | Complete |
+| DOCS-02 | Phase 5 | Complete |
 
 **Coverage:** v1 requirements: 33 total; mapped: 33; unmapped: 0
 (The earlier count of 29 was a miscount; the list contains 33 IDs.)
