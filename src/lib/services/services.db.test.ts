@@ -55,11 +55,11 @@ describe("createProject", () => {
     expect(count("ledger_entries")).toBe(0);
   });
 
-  it("list and detail expose tokens only on the detail DTO", () => {
+  it("list and detail expose tokens only on the detail DTO", async () => {
     const p = createProject(db, input());
     expect(JSON.stringify(listProjects(db))).not.toContain(p.reviewToken);
     expect(getProject(db, p.id).reviewToken).toBe(p.reviewToken);
-    expect(JSON.stringify(getLedger(db, p.id))).not.toContain(p.reviewToken);
+    expect(JSON.stringify(await getLedger(db, p.id))).not.toContain(p.reviewToken);
   });
 });
 
