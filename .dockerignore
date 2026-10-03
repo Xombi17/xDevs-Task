@@ -1,0 +1,15 @@
+node_modules
+.next
+data
+*.db
+*.db-*
+.git
+.planning
+.claude
+.agents
+.env
+.env.*
+!.env.example
+*.tsbuildinfo
+README.md
+seed.mjs
