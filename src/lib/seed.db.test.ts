@@ -5,7 +5,7 @@ import type { Database } from "better-sqlite3";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { openDb } from "@/lib/db";
 import { verifyProject } from "@/lib/ledger/chain";
-import { seedDemo } from "@/lib/seed";
+import { seedDemo, seedTampered } from "@/lib/seed";
 
 let dir: string;
 let db: Database;
@@ -44,5 +44,31 @@ describe("seedDemo", () => {
     expect(n("SELECT COUNT(*) c FROM projects")).toBe(1);
     expect(n("SELECT COUNT(*) c FROM ledger_entries")).toBe(before);
     expect((await verifyProject(db, first.projectId)).valid).toBe(true);
+  });
+});
+
+describe("seedTampered", () => {
+  const triggers = () => n("SELECT COUNT(*) c FROM sqlite_master WHERE type='trigger' AND tbl_name='ledger_entries'");
+
+  it("creates a project that verifies Broken at entry 2, triggers intact", async () => {
+    const r = seedTampered(db);
+    expect(r.created).toBe(true);
+    const v = await verifyProject(db, r.projectId);
+    expect(v.valid).toBe(false);
+    expect(v.brokenAt).toBe(2);
+    expect(v.entries[3].status).toBe("untrusted");
+    expect(triggers()).toBe(2);
+  });
+
+  it("is idempotent and leaves seedDemo valid", async () => {
+    const demo = seedDemo(db);
+    const first = seedTampered(db);
+    const rows = n("SELECT COUNT(*) c FROM ledger_entries");
+    const second = seedTampered(db);
+    expect(second.created).toBe(false);
+    expect(second.projectId).toBe(first.projectId);
+    expect(n("SELECT COUNT(*) c FROM ledger_entries")).toBe(rows);
+    expect(n("SELECT COUNT(*) c FROM projects WHERE title = 'Legacy Audit (tampered)'")).toBe(1);
+    expect((await verifyProject(db, demo.projectId)).valid).toBe(true);
   });
 });
