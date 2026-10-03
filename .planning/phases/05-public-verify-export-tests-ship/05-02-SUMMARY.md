@@ -26,7 +26,7 @@ Login-free /verify/[id] with Valid / "Broken at entry #N" banner and a pasted-re
 ## Tasks
 1. Receipt helpers, decide() receipt now has projectId/action/actor, token-leak tests (RED observed: both suites failed on missing modules) - b917ff6
 2. Public verify page, not-found, audit-page link, ReceiptCheck component - ead0c9f
-3. Receipt block (entry, full hash, actor, time, public link, Blob download with revokeObjectURL), smoke checks - see git log (third commit)
+3. Receipt block (entry, full hash, actor, time, public link, Blob download with revokeObjectURL), smoke checks - 184e9ff
 
 ## Verification
 - `npx vitest run`: 17 files, 129 tests pass
