@@ -93,6 +93,12 @@ export default async function AuditPage({ params }: { params: Promise<{ id: stri
           </div>
         </dl>
         <div className="mt-5 border-t border-line pt-4">
+          <p className="mb-3 text-sm">
+            <Link href={`/verify/${id}`} className="font-medium text-accent underline-offset-2 hover:underline">
+              Public verify page
+            </Link>
+            <span className="text-muted"> — share this address with anyone who needs to check the trail.</span>
+          </p>
           <VerifyButton projectId={id} explainContext={explainContext} />
         </div>
       </Card>
