@@ -48,7 +48,14 @@ export function decide(db: Database, token: string, input: DecisionInput) {
     });
     return {
       milestone: { id: input.milestoneId, status },
-      receipt: { index: entry.index, hash: entry.hash, timestamp: entry.timestamp },
+      receipt: {
+        projectId: p.id,
+        index: entry.index,
+        hash: entry.hash,
+        timestamp: entry.timestamp,
+        action: entry.action,
+        actor: input.actor,
+      },
     };
   } catch (e) {
     if (e instanceof LedgerError) throw fromLedgerError(e);
