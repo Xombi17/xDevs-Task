@@ -144,6 +144,25 @@ try {
   // Integrity
   const verify = await (await fetch(`${BASE}/api/projects/${id}/verify`)).json();
   check("verify API reports valid === true", verify.valid === true);
+
+  // Tamper demo must be unavailable in a production build.
+  {
+    const tr = await fetch(`${BASE}/api/dev/tamper/1`, { method: "POST" });
+    const tt = await tr.text();
+    check("tamper endpoint returns 403 in production", tr.status === 403, `got ${tr.status}`);
+    check("tamper 403 explains ENABLE_TAMPER_DEMO", tt.includes("ENABLE_TAMPER_DEMO"));
+    const legacy = projects.find((p) => p.title === "Legacy Audit (tampered)");
+    check("seeded tampered project exists", !!legacy);
+    if (legacy) {
+      const lv = await (await fetch(`${BASE}/api/projects/${legacy.id}/verify`)).json();
+      check("tampered project verifies Broken at entry 2", lv.valid === false && lv.brokenAt === 2, JSON.stringify({ valid: lv.valid, brokenAt: lv.brokenAt }));
+      const la = await get(`/projects/${legacy.id}/audit`);
+      const vis = norm(withoutScripts(la.text));
+      check("no tamper UI in production audit page", la.status === 200 && !vis.includes("DEMO ONLY") && !vis.includes("Tamper ("));
+    }
+    const wv = await (await fetch(`${BASE}/api/projects/${id}/verify`)).json();
+    check("Website Redesign still verifies valid", wv.valid === true);
+  }
 } catch (e) {
   check("smoke run completed", false, String(e?.message ?? e));
 } finally {
