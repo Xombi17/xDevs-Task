@@ -4,7 +4,7 @@
     {
       "name": "signseal-dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeArgs": ["run", "dev:demo"],
       "port": 3000
     }
   ]
