@@ -73,9 +73,42 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (filled by roadmapper) | | |
+| LEDG-01 | Phase 1 | Pending |
+| LEDG-02 | Phase 1 | Pending |
+| LEDG-03 | Phase 1 | Pending |
+| LEDG-04 | Phase 1 | Pending |
+| LEDG-05 | Phase 1 | Pending |
+| LEDG-06 | Phase 1 | Pending |
+| PROJ-01 | Phase 2 | Pending |
+| PROJ-02 | Phase 2 | Pending |
+| REVW-01 | Phase 2 | Pending |
+| REVW-03 | Phase 2 | Pending |
+| REVW-04 | Phase 2 | Pending |
+| API-01 | Phase 2 | Pending |
+| API-02 | Phase 2 | Pending |
+| API-03 | Phase 2 | Pending |
+| SEED-01 | Phase 2 | Pending |
+| PROJ-03 | Phase 3 | Pending |
+| PROJ-04 | Phase 3 | Pending |
+| REVW-02 | Phase 3 | Pending |
+| AUDT-01 | Phase 3 | Pending |
+| AUDT-02 | Phase 3 | Pending |
+| UI-01 | Phase 3 | Pending |
+| TAMP-01 | Phase 4 | Pending |
+| TAMP-02 | Phase 4 | Pending |
+| TAMP-03 | Phase 4 | Pending |
+| AUDT-03 | Phase 4 | Pending |
+| AUDT-04 | Phase 4 | Pending |
+| AUDT-05 | Phase 4 | Pending |
+| AUDT-06 | Phase 5 | Pending |
+| REVW-05 | Phase 5 | Pending |
+| EXPT-01 | Phase 5 | Pending |
+| TEST-01 | Phase 5 | Pending |
+| DOCS-01 | Phase 5 | Pending |
+| DOCS-02 | Phase 5 | Pending |
 
-**Coverage:** v1 requirements: 29 total; mapped: 0; unmapped: 29
+**Coverage:** v1 requirements: 33 total; mapped: 33; unmapped: 0
+(The earlier count of 29 was a miscount; the list contains 33 IDs.)
 
 ---
 *Requirements defined: 2026-10-03*
