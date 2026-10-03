@@ -47,6 +47,15 @@ export default async function AuditPage({ params }: { params: Promise<{ id: stri
   const { id } = await params;
   const { project, ledger } = await load(id);
 
+  const str = (v: unknown) => (typeof v === "string" ? v : undefined);
+  const explainContext = {
+    entries: ledger.entries.map((e) => {
+      const p = (e.payload && typeof e.payload === "object" ? e.payload : {}) as Record<string, unknown>;
+      return { index: e.index, action: e.action, milestoneId: str(p.milestoneId), decision: str(p.decision) };
+    }),
+    milestones: project.milestones.map((m) => ({ id: m.id, title: m.title, status: m.status })),
+  };
+
   return (
     <div className="mx-auto max-w-3xl">
       <Link href={`/projects/${id}`} className="text-sm font-medium text-muted hover:text-accent">
@@ -72,7 +81,7 @@ export default async function AuditPage({ params }: { params: Promise<{ id: stri
           </div>
         </dl>
         <div className="mt-5 border-t border-line pt-4">
-          <VerifyButton projectId={id} />
+          <VerifyButton projectId={id} explainContext={explainContext} />
         </div>
       </Card>
 

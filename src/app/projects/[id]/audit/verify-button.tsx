@@ -1,8 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { VerifyResult } from "@/lib/ledger/verify";
 import { HashText } from "@/components/ui/hash-text";
+import { explainFailure, type EntryContext, type MilestoneState } from "@/lib/ledger/explain";
+import { LEDGER_CHANGED_EVENT } from "./events";
+import { TamperMap } from "./tamper-map";
+import { FailureExplanation } from "./failure-explanation";
+import { BrowserReverify } from "./browser-reverify";
+
+export type ExplainContext = { entries: EntryContext[]; milestones: MilestoneState[] };
 
 type State =
   | { kind: "idle" }
@@ -16,10 +23,13 @@ const CHIP: Record<"ok" | "broken" | "untrusted", string> = {
   untrusted: "bg-warn-soft text-warn ring-warn/30",
 };
 
-export function VerifyButton({ projectId }: { projectId: string }) {
+export function VerifyButton({ projectId, explainContext }: { projectId: string; explainContext: ExplainContext }) {
   const [state, setState] = useState<State>({ kind: "idle" });
+  const loadingRef = useRef(false);
 
-  async function run() {
+  const run = useCallback(async () => {
+    if (loadingRef.current) return;
+    loadingRef.current = true;
     setState({ kind: "loading" });
     try {
       const res = await fetch(`/api/projects/${projectId}/verify`, { cache: "no-store" });
@@ -27,8 +37,16 @@ export function VerifyButton({ projectId }: { projectId: string }) {
       setState({ kind: "done", result: (await res.json()) as VerifyResult });
     } catch {
       setState({ kind: "error" });
+    } finally {
+      loadingRef.current = false;
     }
-  }
+  }, [projectId]);
+
+  useEffect(() => {
+    const onChange = () => void run();
+    window.addEventListener(LEDGER_CHANGED_EVENT, onChange);
+    return () => window.removeEventListener(LEDGER_CHANGED_EVENT, onChange);
+  }, [run]);
 
   const loading = state.kind === "loading";
 
@@ -47,7 +65,21 @@ export function VerifyButton({ projectId }: { projectId: string }) {
         </div>
       )}
 
-      {state.kind === "done" && <Result result={state.result} />}
+      {state.kind === "done" && (
+        <>
+          <Result result={state.result} />
+          <TamperMap result={state.result} />
+          {(() => {
+            const x = explainFailure(state.result, explainContext.entries, explainContext.milestones);
+            return x ? <FailureExplanation explanation={x} /> : null;
+          })()}
+          <BrowserReverify
+            key={`${state.result.headHash}:${String(state.result.valid)}`}
+            projectId={projectId}
+            server={state.result}
+          />
+        </>
+      )}
     </div>
   );
 }
