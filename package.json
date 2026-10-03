@@ -10,6 +10,7 @@
     "build": "next build",
     "start": "next start",
     "seed": "tsx scripts/seed.ts",
+    "smoke:ui": "node scripts/smoke-ui.mjs",
     "test": "vitest run",
     "test:watch": "vitest"
   },
