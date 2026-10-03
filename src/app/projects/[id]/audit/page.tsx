@@ -6,7 +6,10 @@ import { getLedger, getProject } from "@/lib/services/projects";
 import { Card } from "@/components/ui/card";
 import { HashText } from "@/components/ui/hash-text";
 import { formatDateTime } from "@/lib/format";
+import { tamperEnabled } from "@/lib/dev/gate";
 import { VerifyButton } from "./verify-button";
+import { DemoBanner } from "./demo-banner";
+import { TamperButton } from "./tamper-button";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -47,6 +50,15 @@ export default async function AuditPage({ params }: { params: Promise<{ id: stri
   const { id } = await params;
   const { project, ledger } = await load(id);
 
+  const demo = tamperEnabled();
+  const rowIds = new Map<number, number>();
+  if (demo) {
+    const rows = getDb()
+      .prepare("SELECT id, idx FROM ledger_entries WHERE project_id = ?")
+      .all(id) as { id: number; idx: number }[];
+    for (const r of rows) rowIds.set(r.idx, r.id);
+  }
+
   const str = (v: unknown) => (typeof v === "string" ? v : undefined);
   const explainContext = {
     entries: ledger.entries.map((e) => {
@@ -86,7 +98,7 @@ export default async function AuditPage({ params }: { params: Promise<{ id: stri
       </Card>
 
       <section data-slot="tamper-controls" aria-label="Tamper demo controls" className="mt-4 empty:hidden">
-        {/* PHASE 4 SLOT: tamper button and tamper map render here */}
+        {demo && <DemoBanner />}
       </section>
 
       <h2 className="mt-8 text-lg font-semibold">Timeline</h2>
@@ -94,6 +106,7 @@ export default async function AuditPage({ params }: { params: Promise<{ id: stri
       <ol className="mt-4 border-l-2 border-line pl-5">
         {ledger.entries.map((e) => {
           const note = noteOf(e.payload);
+          const rowId = rowIds.get(e.index);
           return (
             <li key={e.index} id={`entry-${e.index}`} className="relative pb-5 last:pb-0">
               <span
@@ -132,6 +145,11 @@ export default async function AuditPage({ params }: { params: Promise<{ id: stri
                     </dd>
                   </div>
                 </dl>
+                {demo && rowId !== undefined && (
+                  <div className="mt-3 border-t border-line pt-3">
+                    <TamperButton entryId={rowId} index={e.index} />
+                  </div>
+                )}
               </Card>
             </li>
           );
