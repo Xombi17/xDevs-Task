@@ -6,12 +6,12 @@
 ## v1 Requirements
 
 ### Ledger Core
-- [ ] **LEDG-01**: Every event is appended to a per-project chain with hash = SHA-256(index|timestamp|action|actor|canonicalJSON(payload)|prevHash); first entry uses prevHash of 64 zeros
-- [ ] **LEDG-02**: Canonical JSON (recursively key-sorted, no whitespace) and a single `preimage()` live in one pure shared module used by server, browser, tests and export script
-- [ ] **LEDG-03**: Actor names containing `|` are rejected; exact ISO timestamp and canonical payload string are stored and hashed as stored
-- [ ] **LEDG-04**: One writer (`append`) performs head read, hash, insert and milestone update in a single immediate transaction; UNIQUE(project_id, idx) is a backstop
-- [ ] **LEDG-05**: Database triggers reject UPDATE and DELETE on ledger entries; the app exposes no edit/delete path
-- [ ] **LEDG-06**: Verify returns per-entry evidence `{valid, headHash, length, brokenAt?, entries:[{index,status,expectedHash,storedHash}]}` checking contiguous idx, genesis, project ownership, recompute and linkage
+- [x] **LEDG-01**: Every event is appended to a per-project chain with hash = SHA-256(index|timestamp|action|actor|canonicalJSON(payload)|prevHash); first entry uses prevHash of 64 zeros
+- [x] **LEDG-02**: Canonical JSON (recursively key-sorted, no whitespace) and a single `preimage()` live in one pure shared module used by server, browser, tests and export script
+- [x] **LEDG-03**: Actor names containing `|` are rejected; exact ISO timestamp and canonical payload string are stored and hashed as stored
+- [x] **LEDG-04**: One writer (`append`) performs head read, hash, insert and milestone update in a single immediate transaction; UNIQUE(project_id, idx) is a backstop
+- [x] **LEDG-05**: Database triggers reject UPDATE and DELETE on ledger entries; the app exposes no edit/delete path
+- [x] **LEDG-06**: Verify returns per-entry evidence `{valid, headHash, length, brokenAt?, entries:[{index,status,expectedHash,storedHash}]}` checking contiguous idx, genesis, project ownership, recompute and linkage
 
 ### Projects & Dashboard
 - [ ] **PROJ-01**: Agency can create a project with title, client name and 3+ milestones (title, description, due date) with inline validation errors
@@ -73,12 +73,12 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| LEDG-01 | Phase 1 | Pending |
-| LEDG-02 | Phase 1 | Pending |
-| LEDG-03 | Phase 1 | Pending |
-| LEDG-04 | Phase 1 | Pending |
-| LEDG-05 | Phase 1 | Pending |
-| LEDG-06 | Phase 1 | Pending |
+| LEDG-01 | Phase 1 | Complete |
+| LEDG-02 | Phase 1 | Complete |
+| LEDG-03 | Phase 1 | Complete |
+| LEDG-04 | Phase 1 | Complete |
+| LEDG-05 | Phase 1 | Complete |
+| LEDG-06 | Phase 1 | Complete |
 | PROJ-01 | Phase 2 | Pending |
 | PROJ-02 | Phase 2 | Pending |
 | REVW-01 | Phase 2 | Pending |
