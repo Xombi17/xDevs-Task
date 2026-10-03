@@ -29,15 +29,15 @@
 ### Audit & Verify
 - [x] **AUDT-01**: Audit page shows a timeline (action, actor, time, short hash, previous hash) plus head hash and entry count
 - [x] **AUDT-02**: "Verify integrity" recomputes the chain on the server and shows "Valid" or "Broken at entry #N" (single documented numbering convention)
-- [ ] **AUDT-03**: Tamper map shows ok entries green, the broken entry red, downstream entries amber (untrusted) with expected vs stored hash
-- [ ] **AUDT-04**: Browser re-verify recomputes the chain with Web Crypto (with fallback message when unavailable)
-- [ ] **AUDT-05**: On failure, explanation states which check failed (self-hash vs prevHash link) and cross-references milestone state (best-effort, not a true field diff)
+- [x] **AUDT-03**: Tamper map shows ok entries green, the broken entry red, downstream entries amber (untrusted) with expected vs stored hash
+- [x] **AUDT-04**: Browser re-verify recomputes the chain with Web Crypto (with fallback message when unavailable)
+- [x] **AUDT-05**: On failure, explanation states which check failed (self-hash vs prevHash link) and cross-references milestone state (best-effort, not a true field diff)
 - [ ] **AUDT-06**: Public `/verify/:projectId` page verifies a chain without login and never exposes the review token
 
 ### Tamper Demo
-- [ ] **TAMP-01**: Tamper endpoint/button alters one entry's payload via drop-trigger/UPDATE/recreate in one transaction, clearly labelled DEMO ONLY
-- [ ] **TAMP-02**: Tamper is gated server-side by NODE_ENV !== production and ENABLE_TAMPER_DEMO === "true"; blocked returns 403 explaining how to enable; triggers remain intact afterwards
-- [ ] **TAMP-03**: Seed includes a pre-tampered project so "Broken" is demonstrable in any run mode
+- [x] **TAMP-01**: Tamper endpoint/button alters one entry's payload via drop-trigger/UPDATE/recreate in one transaction, clearly labelled DEMO ONLY
+- [x] **TAMP-02**: Tamper is gated server-side by NODE_ENV !== production and ENABLE_TAMPER_DEMO === "true"; blocked returns 403 explaining how to enable; triggers remain intact afterwards
+- [x] **TAMP-03**: Seed includes a pre-tampered project so "Broken" is demonstrable in any run mode
 
 ### Backend & Quality
 - [x] **API-01**: REST API with persistent SQLite DB, zod strict validation on every endpoint and one status-code convention (400 malformed, 422 validation, 404, 409, 403, 429)
@@ -94,12 +94,12 @@
 | AUDT-01 | Phase 3 | Complete |
 | AUDT-02 | Phase 3 | Complete |
 | UI-01 | Phase 3 | Complete |
-| TAMP-01 | Phase 4 | Pending |
-| TAMP-02 | Phase 4 | Pending |
-| TAMP-03 | Phase 4 | Pending |
-| AUDT-03 | Phase 4 | Pending |
-| AUDT-04 | Phase 4 | Pending |
-| AUDT-05 | Phase 4 | Pending |
+| TAMP-01 | Phase 4 | Complete |
+| TAMP-02 | Phase 4 | Complete |
+| TAMP-03 | Phase 4 | Complete |
+| AUDT-03 | Phase 4 | Complete |
+| AUDT-04 | Phase 4 | Complete |
+| AUDT-05 | Phase 4 | Complete |
 | AUDT-06 | Phase 5 | Pending |
 | REVW-05 | Phase 5 | Pending |
 | EXPT-01 | Phase 5 | Pending |
