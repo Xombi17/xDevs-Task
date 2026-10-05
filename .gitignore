@@ -23,3 +23,6 @@ data/
 .DS_Store
 .vscode/
 *.log
+
+# Remotion project used to make the demo video (kept locally, not part of the repo)
+demo-video/
