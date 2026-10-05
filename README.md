@@ -1,8 +1,44 @@
 # SignSeal
 
+![CI](https://github.com/Xombi17/xDevs-Task/actions/workflows/ci.yml/badge.svg)
+
 SignSeal is a small web app for digital agencies that need clients to approve project milestones. The agency creates a project with milestones and shares a private, login-free review link. The client approves a milestone or requests changes (with a note). Every decision is appended to a per-project hash-chained ledger, a tamper-evident audit trail that anyone can verify, so "the client approved this on that date" is something you can show rather than just claim.
 
-Built as the xDEVS Full-Stack Intern take-home. The full brief is in `SPEC.md`.
+Built as the xDEVS Full-Stack Intern take-home. The product spec is in [`docs/SPEC.md`](docs/SPEC.md).
+
+## Demo video
+
+[![SignSeal demo video (1:52)](docs/demo/thumbnail.jpg)](docs/demo/signseal-demo.mp4)
+
+**[Watch the demo (1:52, 1080p)](docs/demo/signseal-demo.mp4)**: create a project, share the client link, the client approves on a phone and requests changes, the audit trail verifies as Valid, the demo tamper breaks the chain at entry #1, and the chain is re-checked offline and on the public page.
+
+The footage is the real app (captured by a scripted headless-browser run). The video was built with Remotion; the voice-over is a synthesized Piper TTS voice, not a human recording, and the music and sound effects are generated in code.
+
+## Repository layout
+
+```
+.
+├── src/
+│   ├── app/              Next.js App Router: pages, and the REST API as route handlers (src/app/api)
+│   ├── components/ui/    Small shared UI primitives (badges, copy buttons, cards)
+│   └── lib/
+│       ├── ledger/       The core: canonical JSON + hash, verify, append (single writer), chain loader, tokens
+│       ├── db/           Schema and append-only triggers (one DDL source), SQLite connection
+│       ├── services/     Project, review and public-verify services, zod schemas, response DTOs
+│       ├── http/         Error mapping, body parsing, in-memory rate limiter
+│       └── dev/          Tamper demo (gated by NODE_ENV and ENABLE_TAMPER_DEMO)
+├── scripts/              seed, offline chain verifier, dev:demo launcher, smoke tests
+├── docs/
+│   ├── SPEC.md           Product and technical spec
+│   └── demo/             Demo video and thumbnail
+├── .planning/            GSD planning artifacts: requirements, roadmap, research, per-phase plans and summaries
+├── .claude/, .agents/    GSD workflow, agents and skills used to build this project
+├── .github/workflows/    CI: type-check, tests, production build
+├── Dockerfile, docker-compose.yml, docker-entrypoint.sh
+└── README.md
+```
+
+Tests sit next to the code they cover (`*.test.ts`, `*.db.test.ts`); `npm test` runs all of them.
 
 ## Features
 
