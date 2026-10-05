@@ -10,7 +10,7 @@ Built as the xDEVS Full-Stack Intern take-home. The product spec is in [`docs/SP
 
 [![SignSeal demo video (1:52)](docs/demo/thumbnail.jpg)](docs/demo/signseal-demo.mp4)
 
-**[Watch the demo (1:52, 1080p)](docs/demo/signseal-demo.mp4)**: create a project, share the client link, the client approves on a phone and requests changes, the audit trail verifies as Valid, the demo tamper breaks the chain at entry #1, and the chain is re-checked offline and on the public page.
+**[Watch the demo (1:52, 720p, 6 MB)](docs/demo/signseal-demo.mp4)**: create a project, share the client link, the client approves on a phone and requests changes, the audit trail verifies as Valid, the demo tamper breaks the chain at entry #1, and the chain is re-checked offline and on the public page.
 
 The footage is the real app (captured by a scripted headless-browser run). The video was built with Remotion; the voice-over is a synthesized Piper TTS voice, not a human recording, and the music and sound effects are generated in code.
 
