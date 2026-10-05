@@ -1,6 +1,18 @@
 {
   "version": 1,
   "skills": {
+    "remotion-best-practices": {
+      "source": "remotion-dev/skills",
+      "sourceType": "github",
+      "skillPath": "skills/remotion-best-practices/SKILL.md",
+      "computedHash": "dab29adc9dd3af4ba8a1a09bb7a7193b1ca2b52b2515cd9248ea0a7e52bef8f5"
+    },
+    "remotion-render": {
+      "source": "remotion-dev/skills",
+      "sourceType": "github",
+      "skillPath": "skills/remotion-render/SKILL.md",
+      "computedHash": "dcf5436ff130e6fe6481fc600f04572dd1bfbff98f141c59cd7cea526b89fe98"
+    },
     "solidity-security": {
       "source": "wshobson/agents",
       "sourceType": "github",
