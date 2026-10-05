@@ -1,9 +1,25 @@
+# dependencies
 node_modules/
+
+# build output
 .next/
-*.db
-*.db-*
-.env
-data/
 next-env.d.ts
 *.tsbuildinfo
 seed.mjs
+coverage/
+
+# local databases (created by `npm run seed` / the app)
+data/
+*.db
+*.db-*
+
+# secrets and local config
+.env
+.env.local
+.env.*.local
+.claude/settings.local.json
+
+# OS / editor / logs
+.DS_Store
+.vscode/
+*.log
