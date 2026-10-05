@@ -331,7 +331,7 @@ Design now to avoid rework: define the `VerifyResult` per-entry shape (expected/
 
 ## Sources
 
-- SPEC.md and .planning/PROJECT.md (project requirements; HIGH confidence for intent)
+- docs/SPEC.md and .planning/PROJECT.md (project requirements; HIGH confidence for intent)
 - better-sqlite3 documentation: transactions (`.immediate()`, `.deferred()`, `.exclusive()`), synchronous API (https://github.com/WiseLibs/better-sqlite3/blob/master/docs/api.md) (from prior knowledge; not re-fetched this session, verify)
 - SQLite docs: CREATE TRIGGER / RAISE(ABORT), transactional DDL, REPLACE conflict resolution and delete triggers (https://www.sqlite.org/lang_createtrigger.html, https://www.sqlite.org/lang_conflict.html) (from prior knowledge, verify)
 - MDN SubtleCrypto.digest; Node `globalThis.crypto` (Node 18+) (prior knowledge, MEDIUM)

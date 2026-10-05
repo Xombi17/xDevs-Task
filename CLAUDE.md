@@ -3,7 +3,7 @@
 
 **SignSeal**
 
-SignSeal is a lightweight web app for small digital agencies. The agency creates a project with milestones and shares a private, login-free review link with the client. Every approval or change request is appended to a per-project **hash-chained ledger** (tamper-evident audit trail) that anyone can verify. Built as THE xDEVS Full-Stack Intern take-home (~2h, AI allowed, GitHub submission). Full detail: `SPEC.md`.
+SignSeal is a lightweight web app for small digital agencies. The agency creates a project with milestones and shares a private, login-free review link with the client. Every approval or change request is appended to a per-project **hash-chained ledger** (tamper-evident audit trail) that anyone can verify. Built as THE xDEVS Full-Stack Intern take-home (~2h, AI allowed, GitHub submission). Full detail: `docs/SPEC.md`.
 
 **Core Value:** The full demo flow works end to end: create project -> client link -> approve / request changes -> audit trail -> Verify says **Valid** -> tamper demo -> Verify says **Broken at entry #N**.
 

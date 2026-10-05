@@ -2,7 +2,7 @@
 
 **Gathered:** 2026-10-03
 **Status:** Ready for planning
-**Mode:** Pre-decided from SPEC.md + research (discuss skipped; all choices locked below)
+**Mode:** Pre-decided from docs/SPEC.md + research (discuss skipped; all choices locked below)
 
 <domain>
 ## Phase Boundary
@@ -17,7 +17,7 @@ A person can run the whole happy path in the browser.
 ### Scope
 Next App Router pages: dashboard `/`, `/projects/new`, `/projects/[id]` (Copy client link), `/projects/[id]/audit` (timeline + head hash + count + Verify integrity), `/review/[token]` (mobile-first, no-referrer, noindex). Server components call services directly; small client components for forms/verify. Loading/empty/error states. Tailwind 4 plain, no component library. Use design skills (tailwind-design-system, vercel-react-best-practices) for quality.
 
-## Locked decisions (from SPEC.md and .planning/research/SUMMARY.md — do not re-litigate)
+## Locked decisions (from docs/SPEC.md and .planning/research/SUMMARY.md — do not re-litigate)
 - Stack: Node 24, Next 16, React 19, TS ~5.9, Tailwind 4, zod 4, better-sqlite3 (raw SQL, no ORM), Vitest 5.
 - Hash: SHA-256 over `index|timestamp|action|actor|canonicalJSON(payload)|prevHash`; genesis prevHash 64 zeros; reject `|` in actor; store exact ISO timestamp and canonical payload string; idx 0-based in storage/API.
 - Single writer `append` in `.immediate()` transaction; decide-once 409 inside it; UNIQUE(project_id, idx); triggers block UPDATE/DELETE.
@@ -33,7 +33,7 @@ File layout, naming, minor UI styling, test organisation.
 </decisions>
 
 <canonical_refs>
-- SPEC.md
+- docs/SPEC.md
 - .planning/PROJECT.md, REQUIREMENTS.md, ROADMAP.md
 - .planning/research/SUMMARY.md, ARCHITECTURE.md, PITFALLS.md, STACK.md
 </canonical_refs>

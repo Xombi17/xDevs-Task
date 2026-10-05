@@ -2,7 +2,7 @@
 
 **Domain:** Client approval / sign-off with tamper-evident audit trail (small agency, login-free client review)
 **Researched:** 2026-10-03
-**Confidence:** MEDIUM. Based on PROJECT.md and SPEC.md plus domain knowledge of proofing/approval tools (Filestage, GoVisually, Ziflow, Notion/Basecamp approvals), e-signature tools (DocuSign, Dropbox Sign, PandaDoc audit certificates), and audit-ledger patterns (Certificate Transparency, Merkle logs, QLDB-style journals, OpenTimestamps). No live web verification was done in this pass, so competitor details are LOW-to-MEDIUM confidence. Scoring and requirement priorities come straight from the spec (HIGH confidence).
+**Confidence:** MEDIUM. Based on PROJECT.md and docs/SPEC.md plus domain knowledge of proofing/approval tools (Filestage, GoVisually, Ziflow, Notion/Basecamp approvals), e-signature tools (DocuSign, Dropbox Sign, PandaDoc audit certificates), and audit-ledger patterns (Certificate Transparency, Merkle logs, QLDB-style journals, OpenTimestamps). No live web verification was done in this pass, so competitor details are LOW-to-MEDIUM confidence. Scoring and requirement priorities come straight from the spec (HIGH confidence).
 
 ## Feature Landscape
 

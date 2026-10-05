@@ -4,7 +4,7 @@
 **Researched:** 2026-10-03
 **Confidence:** MEDIUM. Hash-chain and SQLite semantics are well-established (HIGH). Next.js specifics (config key names, caching defaults, `params` being a Promise) come from training knowledge and were NOT re-verified against current docs in this session. Check them against the installed Next version in Phase 1 (LOW-MEDIUM on those items).
 
-Phases refer to SPEC.md section 12: P1 Scaffold/schema/triggers/seed; P2 Ledger core; P3 API; P4 UI; P5 Tamper demo/map/browser verify/diff; P6 Public verify/export/receipt/README/Docker/tests; P7 Bonus.
+Phases refer to docs/SPEC.md section 12: P1 Scaffold/schema/triggers/seed; P2 Ledger core; P3 API; P4 UI; P5 Tamper demo/map/browser verify/diff; P6 Public verify/export/receipt/README/Docker/tests; P7 Bonus.
 
 ## Critical Pitfalls
 
@@ -249,7 +249,7 @@ Phases refer to SPEC.md section 12: P1 Scaffold/schema/triggers/seed; P2 Ledger 
 
 ## Sources
 
-- SPEC.md sections 5, 12, 14 and PROJECT.md constraints (project-specific requirements, provided)
+- docs/SPEC.md sections 5, 12, 14 and PROJECT.md constraints (project-specific requirements, provided)
 - SQLite documentation (transactions, BEGIN IMMEDIATE, transactional DDL, triggers, WAL), from training knowledge (MEDIUM)
 - better-sqlite3 README on `db.transaction`, `.immediate()`, synchronous API, pragmas (training knowledge, MEDIUM)
 - RFC 4122 (UUIDv4 has 122 random bits) (HIGH); nanoid default 21 chars x 6 bits = 126 bits (HIGH, arithmetic)
