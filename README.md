@@ -8,7 +8,9 @@ Built as the xDEVS Full-Stack Intern take-home. The product spec is in [`docs/SP
 
 ## Demo video
 
-[![SignSeal demo video (1:52)](docs/demo/thumbnail.jpg)](docs/demo/signseal-demo.mp4)
+[![SignSeal demo preview: the tamper is detected and the chain breaks at entry #1 (silent 18 s loop, click for the full video)](docs/demo/preview.gif)](docs/demo/signseal-demo.mp4)
+
+<sub>Silent 18-second loop of the key moment. Click it for the full video with voice-over.</sub>
 
 **[Watch the demo (1:52, 720p, 6 MB)](docs/demo/signseal-demo.mp4)**: create a project, share the client link, the client approves on a phone and requests changes, the audit trail verifies as Valid, the demo tamper breaks the chain at entry #1, and the chain is re-checked offline and on the public page.
 
